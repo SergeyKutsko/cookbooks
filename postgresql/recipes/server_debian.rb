@@ -28,6 +28,14 @@ when "8.3"
     recursive true
     action :create
   end
+  
+  directory '/etc/init.d/postgresql-8.3' do
+    owner 'postgres'
+    group 'postgres'
+    recursive true
+    action :create
+  end
+  
   node.default[:postgresql][:ssl] = "off"
 when "8.4"
   directory "/etc/postgresql/8.4/main" do
@@ -36,6 +44,14 @@ when "8.4"
     recursive true
     action :create
   end
+  
+  directory '/etc/init.d/postgresql-8.4' do
+    owner 'postgres'
+    group 'postgres'
+    recursive true
+    action :create
+  end
+  
   node.default[:postgresql][:ssl] = "true"
 end
 
