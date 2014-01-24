@@ -19,10 +19,23 @@
 
 include_recipe "postgresql::client"
 
+
 case node[:postgresql][:version]
 when "8.3"
+  directory "/etc/postgresql/8.3/main" do
+    owner 'postgres'
+    group 'postgres'
+    recursive true
+    action :create
+  end
   node.default[:postgresql][:ssl] = "off"
 when "8.4"
+  directory "/etc/postgresql/8.4/main" do
+    owner 'postgres'
+    group 'postgres'
+    recursive true
+    action :create
+  end
   node.default[:postgresql][:ssl] = "true"
 end
 
