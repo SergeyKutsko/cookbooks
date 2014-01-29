@@ -21,6 +21,20 @@ include_recipe "postgresql::client"
 
 node.default[:postgresql][:ssl] = node[:postgresql][:version].to_f > 8.3
 
+directory "/etc/postgresql/#{node.postgresql.version}/main" do
+  owner 'postgres'
+  group 'postgres'
+  recursive true
+  action :create
+end
+  
+directory "/etc/init.d/postgresql-#{node.postgresql.version}" do
+  owner 'postgres'
+  group 'postgres'
+  recursive true
+  action :create
+end
+
 package "postgresql"
 
 template "#{node[:postgresql][:dir]}/pg_hba.conf" do
